@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateSettings;
 use App\Setting;
-use Facade\FlareClient\View;
-use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
@@ -16,23 +15,11 @@ class SettingsController extends Controller
         return View('settings.index');
     }
 
-    public function update(Request $request)
+    public function update(UpdateSettings $settings)
     {
-        $this->authorize('admin');
-
-        $credentials = $request->validate([
-            'address' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'site_name' => 'required',
-            'logo_path' => 'required',
-            'about_content' => 'required',
-            'is_open' => 'required'
-        ]);
-
         Setting::first()->delete();
 
-        Setting::create($credentials);
+        Setting::create( $settings->validated() );
 
         return back();
     }

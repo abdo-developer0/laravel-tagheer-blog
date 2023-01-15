@@ -26,9 +26,7 @@ class FrontController extends Controller
 
     public function subscribe(Request $request)
     {
-        $subscriber = $request->validate([
-            'email' => 'required|string|unique:subscribers'
-        ]);
+        $subscriber = $request->validate(['email' => 'required|string|unique:subscribers']);
 
         Subscriber::create($subscriber);
 

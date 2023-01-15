@@ -40,9 +40,12 @@
                 </select>
             </div>
             
-            <div class="control-group">
-                <input type="checkbox" id="need_veryfiy" name="need_veryfiy" checked>
-                <label for="need_veryfiy">Need to veryfication</label>
+            <div class="control-group mb-2">
+                <label for="activation">Activation</label>
+                <select name="activation" required id="activation" class="form-control">
+                    <option value="0">not activated</option>
+                    <option value="1">activated</option>
+                </select>
             </div>
 
             <div class="mt-3">
